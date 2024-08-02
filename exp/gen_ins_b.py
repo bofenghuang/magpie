@@ -83,7 +83,7 @@ else:
     output_dir = f"{args.output_folder}/{args.job_name}/{output_filename}"
 
 # Set the device
-os.environ["CUDA_VISIBLE_DEVICES"] = args.device
+# os.environ["CUDA_VISIBLE_DEVICES"] = args.device
 # Set generation engine
 if args.engine == "vllm":
     # Create vllm instance  
@@ -106,7 +106,9 @@ elif args.engine == "hf":
     )
 
 # todo: tmp fix
-args.model_path = re.sub("/projects/bhuang/models/llm/pretrained/", "", args.model_path)
+# args.model_path = re.sub("/projects/bhuang/models/llm/pretrained/", "", args.model_path)
+# args.model_path = re.sub("/lustre/fswork/projects/rech/gkb/commun/models/pretrained/", "", args.model_path)
+args.model_path = re.search(r"([^/]+/[^/]+)$", args.model_path).group(1)
 
 # Obtain config from configs/model_configs.json
 with open("../configs/model_configs_b.json", "r", encoding="utf-8") as f:
