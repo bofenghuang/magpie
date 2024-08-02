@@ -1,0 +1,194 @@
+{
+  "meta-llama/Meta-Llama-3.1-8B-Instruct": {
+    "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+    "stop_tokens": [
+      "<|eot_id|>",
+      "<|end_of_text|>",
+      "<|starter_header_id|>",
+      "<|end_header_id|>"
+    ],
+    "stop_token_ids": [
+      128009,
+      128001,
+      128006,
+      128007
+    ],
+    "stop_tokens_assistant": [
+      "assistant"
+    ],
+    "pre_query_template": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n",
+    "mt_append_template": "<|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_with_system_prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nUne conversation entre un utilisateur curieux et un assistant d'IA.###PLACE_HOLDER###<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_math": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant designed to provide helpful, step-by-step guidance on solving math problems. The user will ask you a wide range of complex mathematical questions.\nYour purpose is to assist users in understanding mathematical concepts, working through equations, and arriving at the correct solutions.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_code": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant designed to provide helpful, step-by-step guidance on coding problems. The user will ask you a wide range of coding questions.\nYour purpose is to assist users in understanding coding concepts, working through code, and arriving at the correct solutions.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_translation": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant specifically designed to provide accurate and contextually appropriate translations. Users will ask you to translate text between various languages.\nYour purpose is to assist users in understanding and conveying meaning across languages, maintaining the original context and nuances.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+  },
+  "meta-llama/Meta-Llama-3.1-70B-Instruct": {
+    "model_name": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+    "stop_tokens": [
+      "<|eot_id|>",
+      "<|end_of_text|>",
+      "<|starter_header_id|>",
+      "<|end_header_id|>"
+    ],
+    "stop_token_ids": [
+      128009,
+      128001,
+      128006,
+      128007
+    ],
+    "stop_tokens_assistant": [
+      "assistant"
+    ],
+    "pre_query_template": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n",
+    "mt_append_template": "<|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_with_system_prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nUne conversation entre un utilisateur curieux et un assistant d'IA.###PLACE_HOLDER###<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_math": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant designed to provide helpful, step-by-step guidance on solving math problems. The user will ask you a wide range of complex mathematical questions.\nYour purpose is to assist users in understanding mathematical concepts, working through equations, and arriving at the correct solutions.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_code": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant designed to provide helpful, step-by-step guidance on coding problems. The user will ask you a wide range of coding questions.\nYour purpose is to assist users in understanding coding concepts, working through code, and arriving at the correct solutions.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_translation": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant specifically designed to provide accurate and contextually appropriate translations. Users will ask you to translate text between various languages.\nYour purpose is to assist users in understanding and conveying meaning across languages, maintaining the original context and nuances.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+  },
+  "meta-llama/Meta-Llama-3.1-405B-Instruct-FP8": {
+    "model_name": "meta-llama/Meta-Llama-3.1-405B-Instruct-FP8",
+    "stop_tokens": [
+      "<|eot_id|>",
+      "<|end_of_text|>",
+      "<|starter_header_id|>",
+      "<|end_header_id|>"
+    ],
+    "stop_token_ids": [
+      128009,
+      128001,
+      128006,
+      128007
+    ],
+    "stop_tokens_assistant": [
+      "assistant"
+    ],
+    "pre_query_template": "<|begin_of_text|><|start_header_id|>user<|end_header_id|>\n\n",
+    "mt_append_template": "<|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_with_system_prompt": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nUne conversation entre un utilisateur curieux et un assistant d'IA.###PLACE_HOLDER###<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_math": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant designed to provide helpful, step-by-step guidance on solving math problems. The user will ask you a wide range of complex mathematical questions.\nYour purpose is to assist users in understanding mathematical concepts, working through equations, and arriving at the correct solutions.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_code": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant designed to provide helpful, step-by-step guidance on coding problems. The user will ask you a wide range of coding questions.\nYour purpose is to assist users in understanding coding concepts, working through code, and arriving at the correct solutions.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
+    "pre_query_template_translation": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant specifically designed to provide accurate and contextually appropriate translations. Users will ask you to translate text between various languages.\nYour purpose is to assist users in understanding and conveying meaning across languages, maintaining the original context and nuances.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
+  },
+  "Qwen/Qwen2-72B-Instruct": {
+    "model_name": "Qwen/Qwen2-72B-Instruct",
+    "stop_tokens": [
+      "<|im_start|>",
+      "<|im_end|>",
+      "<|endoftext|>"
+    ],
+    "stop_token_ids": [
+      151643,
+      151644,
+      151645
+    ],
+    "stop_tokens_assistant": [
+      "Assistant",
+      "assistant"
+    ],
+    "pre_query_template": "<|im_start|>user\n"
+  },
+  "mistralai/Mistral-Large-Instruct-2407": {
+    "model_name": "mistralai/Mistral-Large-Instruct-2407",
+    "stop_tokens": [
+      "<s>",
+      "</s>",
+      "[INST]",
+      "[/INST]"
+    ],
+    "stop_token_ids": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "stop_tokens_assistant": [
+      "assistant"
+    ],
+    "pre_query_template": "<s>[INST] ",
+    "pre_query_template_with_system_prompt": "<s>[INST] <<SYS>>\nUne conversation entre un utilisateur curieux et un assistant d'IA.###PLACE_HOLDER###\n<</SYS>>\n\n"
+  },
+  "google/gemma-2-27b-it": {
+    "model_name": "google/gemma-2-27b-it",
+    "stop_tokens": [
+      "<eos>",
+      "<bos>",
+      "<end_of_turn>"
+    ],
+    "stop_token_ids": [
+      1,
+      2,
+      107
+    ],
+    "stop_tokens_assistant": [
+      "assistant"
+    ],
+    "pre_query_template": "<bos><start_of_turn>user\n\n"
+  },
+  "microsoft/Phi-3-medium-128k-instruct": {
+    "model_name": "microsoft/Phi-3-medium-128k-instruct",
+    "stop_tokens": [
+      "</s>",
+      "<s>",
+      "<unk>",
+      "<|endoftext|>",
+      "<|user|>",
+      "<|assistant|>",
+      "<|system|>",
+      "<|end|>"
+    ],
+    "stop_token_ids": [
+      2,
+      1,
+      0,
+      32000,
+      32001,
+      32006,
+      32007,
+      32010
+    ],
+    "stop_tokens_assistant": [
+      "assistant"
+    ],
+    "pre_query_template": "<s> <|user|>\n"
+  },
+  "01-ai/Yi-1.5-34B-Chat": {
+    "model_name": "01-ai/Yi-1.5-34B-Chat",
+    "stop_tokens": [
+      "<|startoftext|>",
+      "<|endoftext|>",
+      "<|im_end|>"
+    ],
+    "stop_token_ids": [
+      1,
+      2,
+      7
+    ],
+    "stop_tokens_assistant": [
+      "assistant"
+    ],
+    "pre_query_template": "<|startoftext|><|im_start|>user\n"
+  },
+  "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": {
+    "model_name": "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
+    "stop_tokens": [
+      "<｜begin▁of▁sentence｜>",
+      "<｜end▁of▁sentence｜>",
+      "<|EOT|>",
+      "<｜User｜>",
+      "<｜Assistant｜>"
+    ],
+    "stop_token_ids": [
+      100000,
+      100001,
+      100008,
+      100006,
+      100007
+    ],
+    "stop_tokens_assistant": [
+      "assistant"
+    ],
+    "pre_query_template": "<｜begin▁of▁sentence｜>User: "
+  }
+}
