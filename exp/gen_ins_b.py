@@ -162,7 +162,7 @@ sampling_params = SamplingParams(
     logits_processors=[logits_processor] if logits_processor else None
 )
 
-system_prompt_boosters = [
+system_prompt_tasks = [
     ("", ""),
     ("Information seeking", " L'utilisateur pose des questions qui peuvent être des demandes d'informations spécifiques ou de faits sur divers sujets."),
     ("Reasoning", " L'utilisateur pose des questions qui peuvent nécessiter une réflexion logique, la résolution de problèmes ou le traitement d'idées complexes."),
@@ -177,6 +177,15 @@ system_prompt_boosters = [
     ("Brainstorming", " L'utilisateur pose des questions qui peuvent impliquer la génération d'idées, la pensée créative ou l'exploration de possibilités.")
 ]
 
+boost_randomness_probability = 0.5
+system_prompt_randomness_boosters = [
+    ("Complex", " Les questions posées peuvent également être complexes, nuancées ou multidimensionnelles."),
+    ("Creative", " Les questions posées peuvent également être créatives et variées."),
+    ("Smart", " Les questions posées peuvent également être astucieuses et originales."),
+    ("Surprising", " Les questions posées peuvent également être inattendues ou celles auxquelles les utilisateurs ne pensent pas immédiatement."),
+    ("Detailed", " Les questions posées peuvent également être détaillées et contextualisées de manière approfondie."),
+]
+
 ################
 # Generate outputs
 ################
@@ -184,9 +193,13 @@ results = []
 for rounds in tqdm(range(args.repeat)):
 
     task_category = None
+    randomness_booster_category = None
     if args.system_prompt:
-        task_category, system_prompt_booster = random.choice(system_prompt_boosters)
-        query_template = re.sub("###PLACE_HOLDER###", system_prompt_booster, pre_query_template)
+        task_category, task_prompt = random.choice(system_prompt_tasks)
+        if random.random() < boost_randomness_probability:
+            randomness_booster_category, randomness_booster_prompt = random.choice(system_prompt_randomness_boosters)
+            task_prompt += randomness_booster_prompt
+        query_template = re.sub("###PLACE_HOLDER###", task_prompt, pre_query_template)
     else:
         query_template = pre_query_template
 
@@ -230,6 +243,7 @@ for rounds in tqdm(range(args.repeat)):
             result = {
                 "id": rounds * args.n + i,
                 "task_category": task_category,
+                "randomness_booster_category": randomness_booster_category,
                 "pre_query_template": f"{query_template}",
                 "raw_instruction": instruction,
                 "instruction": sanitized_instruction,
@@ -248,8 +262,9 @@ for rounds in tqdm(range(args.repeat)):
             result = {
                 "id": rounds * args.n + i,
                 "task_category": task_category,
+                "randomness_booster_category": randomness_booster_category,
                 "pre_query_template": f"{query_template}",
-                "instruction": instruction,
+                "raw_instruction": instruction,
                 "response": None,
                 "created": int(time.time()),
                 "gen_instruction_configs": {

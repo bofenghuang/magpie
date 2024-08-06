@@ -1,3 +1,10 @@
+#!/usr/bin/env bash
+# Copyright 2024  Bofeng Huang
+
+# cuda
+# export CUDA_VISIBLE_DEVICES="4,5,6,7"
+# export CUDA_VISIBLE_DEVICES="0,1,2,3"
+
 model_path=${1:-"meta-llama/Meta-Llama-3.1-8B-Instruct"}
 total_prompts=${2:-1000}
 ins_topp=${3:-1}
@@ -18,7 +25,7 @@ batch_size=200
 
 # Get Current Time
 # timestamp=$(date +%s)
-timestamp=$(date +%y%m%d-%H%M%S)
+timestamp=$(date +%y%m%d)
 
 # Generate Pretty Name
 job_name="${model_path##*/}_topp${ins_topp}_temp${ins_temp}_${timestamp}"
