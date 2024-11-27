@@ -1,16 +1,18 @@
 #!/bin/bash
 # Copyright 2023  Bofeng Huang
 
-#SBATCH --job-name=gen_magpie
+#SBATCH --job-name=magpie-gen
 #SBATCH --output=logs/%x/%j.out      # output file (%j = job ID)
-#SBATCH --error=logs/%x/%j.err       # error file (%j = job ID)
-#SBATCH --nodes=2
+#SBATCH --error=logs/%x/%j.out       # error file (%j = job ID)
+#SBATCH --nodes=1
+#SBATCH --exclusive
 #SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
 #SBATCH --cpus-per-task=96           # number of cores per tasks
 #SBATCH --gres=gpu:4                 # reserve number of GPUs per node
-#SBATCH --time=00:20:00              # maximum execution time (HH:MM:SS)
+#SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
 #SBATCH --hint=nomultithread         # we get physical cores not logical
 #SBATCH --constraint=h100
+#SBATCH --account=gkb@h100           # account to use, with xyz the 3 letter code of your project
 
 # Run magpie generation
 
@@ -20,6 +22,7 @@ echo "START TIME: $(date)"
 
 # set up environment
 module purge
+module load arch/h100
 module load git-lfs
 # module load unrar
 module load anaconda-py3/2024.06
@@ -56,6 +59,7 @@ export HF_HUB_OFFLINE="1"
 export HF_DATASETS_OFFLINE="1"
 export HF_EVALUATE_OFFLINE="1"
 
+# export VLLM_ATTENTION_BACKEND="FLASHINFER"
 
 model_path=${1:-"meta-llama/Meta-Llama-3.1-8B-Instruct"}
 total_prompts=${2:-1000}
@@ -68,23 +72,23 @@ res_rep=1
 # tensor_parallel=1
 # device="4,5,6,7"
 # device="0,1,2,3"
-# tensor_parallel=4
+tensor_parallel=4
 # device="0,1,2,3,4,5,6,7"
-tensor_parallel=8
+# tensor_parallel=8
 gpu_memory_utilization=0.95
 n=200
 batch_size=200
 
 # Get Current Time
-# timestamp=$(date +%s)
-timestamp=$(date +%y%m%d-%H%M%S)
+timestamp=$(date +%s)
+# timestamp=$(date +%y%m%d-%H%M%S)
 
 # Generate Pretty Name
 job_name="${model_path##*/}_topp${ins_topp}_temp${ins_temp}_${timestamp}"
 
 # tmp fix
-export ALL_CCFRWORK="/lustre/fswork/projects/rech/gkb/commun"
-output_folder="$ALL_CCFRWORK/corpus/text/llm_instruct/magpie"
+# export ALL_CCFRWORK="/lustre/fswork/projects/rech/gkb/commun"
+output_folder="$ALL_CCFRWORK/corpus/text/llm_instruct/magpie_c"
 
 ### Setup Logging
 # log_dir="data"
@@ -109,7 +113,7 @@ echo "[magpie.sh] Start Generating Instructions..."
     # --sanitize \
     # --job_name $job_name \
     # --device $device \
-python ../exp/gen_ins_b.py \
+python ../exp/gen_ins_c.py \
     --model_path $model_path \
     --total_prompts $total_prompts \
     --system_prompt \

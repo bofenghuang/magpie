@@ -1,9 +1,65 @@
-#!/usr/bin/env bash
-# Copyright 2024  Bofeng Huang
+#!/bin/bash
+# Copyright 2023  Bofeng Huang
+
+#SBATCH --job-name=magpie-gen
+#SBATCH --output=logs/%x/%j.out      # output file (%j = job ID)
+#SBATCH --error=logs/%x/%j.out       # error file (%j = job ID)
+#SBATCH --nodes=1
+#SBATCH --exclusive
+#SBATCH --ntasks-per-node=1          # crucial - only 1 task per dist per node!
+#SBATCH --cpus-per-task=96           # number of cores per tasks
+#SBATCH --gres=gpu:4                 # reserve number of GPUs per node
+#SBATCH --time=20:00:00              # maximum execution time (HH:MM:SS)
+#SBATCH --hint=nomultithread         # we get physical cores not logical
+#SBATCH --constraint=h100
+#SBATCH --account=gkb@h100           # account to use, with xyz the 3 letter code of your project
+
+# Run magpie generation
+
+set -x -e
+
+echo "START TIME: $(date)"
+
+# set up environment
+module purge
+module load arch/h100
+module load git-lfs
+# module load unrar
+module load anaconda-py3/2024.06
+module load cuda/12.2.0
+# conda
+conda activate llm
+
+# Debugging flags (optional)
+# force crashing on nccl issues like hanging broadcast
+# export NCCL_ASYNC_ERROR_HANDLING=1
+# export NCCL_DEBUG=INFO
+# export NCCL_DEBUG_SUBSYS=COLL
+# export NCCL_SOCKET_NTHREADS=1
+# export NCCL_NSOCKS_PERTHREAD=1
+# export CUDA_LAUNCH_BLOCKING=1
+# export PYTHONFAULTHANDLER=1
+
+# https://github.com/pytorch/audio/issues/1021#issuecomment-726915239
+# export OMP_NUM_THREADS="1"
+
+# slurm buffers python output by default, unbuffer python -u
+# export PYTHONUNBUFFERED="1"
 
 # cuda
 # export CUDA_VISIBLE_DEVICES="4,5,6,7"
 # export CUDA_VISIBLE_DEVICES="0,1,2,3"
+
+# hf
+# export HF_HOME="/projects/bhuang/.cache/huggingface"
+export TOKENIZERS_PARALLELISM="false"
+# export BITSANDBYTES_NOWELCOME="1"
+# export HF_HUB_ENABLE_HF_TRANSFER="1"
+export HF_HUB_OFFLINE="1"
+export HF_DATASETS_OFFLINE="1"
+export HF_EVALUATE_OFFLINE="1"
+
+# export VLLM_ATTENTION_BACKEND="FLASHINFER"
 
 model_path=${1:-"meta-llama/Meta-Llama-3.1-8B-Instruct"}
 total_prompts=${2:-1000}
@@ -16,21 +72,23 @@ res_rep=1
 # tensor_parallel=1
 # device="4,5,6,7"
 # device="0,1,2,3"
-# tensor_parallel=4
+tensor_parallel=4
 # device="0,1,2,3,4,5,6,7"
-tensor_parallel=8
+# tensor_parallel=8
 gpu_memory_utilization=0.95
 n=200
 batch_size=200
 
 # Get Current Time
-# timestamp=$(date +%s)
-timestamp=$(date +%y%m%d)
+timestamp=$(date +%s)
+# timestamp=$(date +%y%m%d-%H%M%S)
 
 # Generate Pretty Name
 job_name="${model_path##*/}_topp${ins_topp}_temp${ins_temp}_${timestamp}"
 
-output_folder="/projects/bhuang/corpus/text/llm/generated/magpie"
+# tmp fix
+# export ALL_CCFRWORK="/lustre/fswork/projects/rech/gkb/commun"
+output_folder="$ALL_CCFRWORK/corpus/text/llm_instruct/magpie"
 
 ### Setup Logging
 # log_dir="data"
@@ -86,3 +144,5 @@ echo "[magpie.sh] Finish Generating Instructions!"
 #     --offline \
 
 # echo "[magpie.sh] Finish Generating Responses!"
+
+echo "END TIME: $(date)"

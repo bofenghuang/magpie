@@ -1,3 +1,8 @@
+
+"""
+Use system prompt to guide instruction generation in French and for specified tasks.
+"""
+
 import torch
 import os
 import re
@@ -163,7 +168,7 @@ sampling_params = SamplingParams(
 )
 
 system_prompt_tasks = [
-    ("", ""),
+    # ("", ""),
     ("Information seeking", " L'utilisateur pose des questions qui peuvent être des demandes d'informations spécifiques ou de faits sur divers sujets."),
     ("Reasoning", " L'utilisateur pose des questions qui peuvent nécessiter une réflexion logique, la résolution de problèmes ou le traitement d'idées complexes."),
     ("Planning", " L'utilisateur pose des questions qui peuvent nécessiter de l'aide pour créer des plans ou des stratégies pour des activités et des projets."),
@@ -179,11 +184,16 @@ system_prompt_tasks = [
 
 boost_randomness_probability = 0.5
 system_prompt_randomness_boosters = [
-    ("Complex", " Les questions posées peuvent également être complexes, nuancées ou multidimensionnelles."),
-    ("Creative", " Les questions posées peuvent également être créatives et variées."),
-    ("Smart", " Les questions posées peuvent également être astucieuses et originales."),
-    ("Surprising", " Les questions posées peuvent également être inattendues ou celles auxquelles les utilisateurs ne pensent pas immédiatement."),
-    ("Detailed", " Les questions posées peuvent également être détaillées et contextualisées de manière approfondie."),
+    # ("Complex", " Les questions posées peuvent également être complexes, nuancées ou multidimensionnelles."),
+    # ("Creative", " Les questions posées peuvent également être créatives et variées."),
+    # ("Smart", " Les questions posées peuvent également être astucieuses et originales."),
+    # ("Surprising", " Les questions posées peuvent également être inattendues ou celles auxquelles les utilisateurs ne pensent pas immédiatement."),
+    # ("Detailed", " Les questions posées peuvent également être détaillées et contextualisées de manière approfondie."),
+    ("Complex", " Les questions posées doivent également être complexes, nuancées ou multidimensionnelles."),
+    ("Creative", " Les questions posées doivent également être créatives et variées."),
+    ("Smart", " Les questions posées doivent également être astucieuses et originales."),
+    ("Surprising", " Les questions posées doivent également être inattendues ou celles auxquelles les utilisateurs ne pensent pas immédiatement."),
+    ("Detailed", " Les questions posées doivent également être détaillées et contextualisées de manière approfondie."),
 ]
 
 ################
