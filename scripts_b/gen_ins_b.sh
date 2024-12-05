@@ -1,6 +1,18 @@
 #!/usr/bin/env bash
 # Copyright 2024  Bofeng Huang
 
+# Run magpie generation
+
+set -x -e
+
+echo "START TIME: $(date)"
+
+# https://github.com/pytorch/audio/issues/1021#issuecomment-726915239
+# export OMP_NUM_THREADS="1"
+
+# slurm buffers python output by default, unbuffer python -u
+export PYTHONUNBUFFERED="1"
+
 # cuda
 # export CUDA_VISIBLE_DEVICES="4,5,6,7"
 # export CUDA_VISIBLE_DEVICES="0,1,2,3"

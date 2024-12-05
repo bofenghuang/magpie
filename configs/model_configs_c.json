@@ -1,6 +1,6 @@
 {
-  "meta-llama/Meta-Llama-3.1-8B-Instruct": {
-    "model_name": "meta-llama/Meta-Llama-3.1-8B-Instruct",
+  "meta-llama/Llama-3.1-8B-Instruct": {
+    "model_name": "meta-llama/Llama-3.1-8B-Instruct",
     "stop_tokens": [
       "<|eot_id|>",
       "<|end_of_text|>",
@@ -23,8 +23,8 @@
     "pre_query_template_code": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant designed to provide helpful, step-by-step guidance on coding problems. The user will ask you a wide range of coding questions.\nYour purpose is to assist users in understanding coding concepts, working through code, and arriving at the correct solutions.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
     "pre_query_template_translation": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant specifically designed to provide accurate and contextually appropriate translations. Users will ask you to translate text between various languages.\nYour purpose is to assist users in understanding and conveying meaning across languages, maintaining the original context and nuances.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
   },
-  "meta-llama/Meta-Llama-3.1-70B-Instruct": {
-    "model_name": "meta-llama/Meta-Llama-3.1-70B-Instruct",
+  "meta-llama/Llama-3.1-70B-Instruct": {
+    "model_name": "meta-llama/Llama-3.1-70B-Instruct",
     "stop_tokens": [
       "<|eot_id|>",
       "<|end_of_text|>",
@@ -47,8 +47,8 @@
     "pre_query_template_code": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant designed to provide helpful, step-by-step guidance on coding problems. The user will ask you a wide range of coding questions.\nYour purpose is to assist users in understanding coding concepts, working through code, and arriving at the correct solutions.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n",
     "pre_query_template_translation": "<|begin_of_text|><|start_header_id|>system<|end_header_id|>\n\nYou are an AI assistant specifically designed to provide accurate and contextually appropriate translations. Users will ask you to translate text between various languages.\nYour purpose is to assist users in understanding and conveying meaning across languages, maintaining the original context and nuances.<|eot_id|><|start_header_id|>user<|end_header_id|>\n\n"
   },
-  "meta-llama/Meta-Llama-3.1-405B-Instruct-FP8": {
-    "model_name": "meta-llama/Meta-Llama-3.1-405B-Instruct-FP8",
+  "meta-llama/Llama-3.1-405B-Instruct-FP8": {
+    "model_name": "meta-llama/Llama-3.1-405B-Instruct-FP8",
     "stop_tokens": [
       "<|eot_id|>",
       "<|end_of_text|>",

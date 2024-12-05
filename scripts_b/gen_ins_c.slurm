@@ -21,14 +21,14 @@ set -x -e
 echo "START TIME: $(date)"
 
 # set up environment
-module purge
-module load arch/h100
-module load git-lfs
-# module load unrar
-module load anaconda-py3/2024.06
-module load cuda/12.2.0
-# conda
-conda activate llm
+# module purge
+# module load arch/h100
+# module load git-lfs
+# # module load unrar
+# module load anaconda-py3/2024.06
+# module load cuda/12.2.0
+# # conda
+# conda activate llm
 
 # Debugging flags (optional)
 # force crashing on nccl issues like hanging broadcast
@@ -48,16 +48,16 @@ export PYTHONUNBUFFERED="1"
 
 # cuda
 # export CUDA_VISIBLE_DEVICES="4,5,6,7"
-# export CUDA_VISIBLE_DEVICES="0,1,2,3,4,5,6,7"
+# export CUDA_VISIBLE_DEVICES="0,1,2,3"
 
 # hf
 # export HF_HOME="/projects/bhuang/.cache/huggingface"
 export TOKENIZERS_PARALLELISM="false"
 # export BITSANDBYTES_NOWELCOME="1"
 # export HF_HUB_ENABLE_HF_TRANSFER="1"
-export HF_HUB_OFFLINE="1"
-export HF_DATASETS_OFFLINE="1"
-export HF_EVALUATE_OFFLINE="1"
+# export HF_HUB_OFFLINE="1"
+# export HF_DATASETS_OFFLINE="1"
+# export HF_EVALUATE_OFFLINE="1"
 
 # export VLLM_ATTENTION_BACKEND="FLASHINFER"
 
@@ -72,9 +72,9 @@ res_rep=1
 # tensor_parallel=1
 # device="4,5,6,7"
 # device="0,1,2,3"
-tensor_parallel=4
+# tensor_parallel=4
 # device="0,1,2,3,4,5,6,7"
-# tensor_parallel=8
+tensor_parallel=8
 gpu_memory_utilization=0.95
 n=200
 batch_size=200
@@ -86,9 +86,9 @@ timestamp=$(date +%s)
 # Generate Pretty Name
 job_name="${model_path##*/}_topp${ins_topp}_temp${ins_temp}_${timestamp}"
 
-# tmp fix
-# export ALL_CCFRWORK="/lustre/fswork/projects/rech/gkb/commun"
-output_folder="$ALL_CCFRWORK/corpus/text/llm_instruct/magpie_c"
+# output_folder="/projects/bhuang/corpus/text/llm/generated/magpie"
+output_folder="/projects/bhuang/corpus/text/llm/vigogne-alignment-data/magpie-fr-new/Llama-3.1-405B-Instruct-FP8"
+# output_folder="$ALL_CCFRWORK/corpus/text/llm_instruct/magpie_c"
 
 ### Setup Logging
 # log_dir="data"
